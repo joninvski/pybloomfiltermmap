@@ -132,7 +132,7 @@ int main(int argc, char **argv)
 {
     int hash_seeds[5] = { 4234 , 2123, 4434, 444, 12123};
     BloomFilter *bf = bloomfilter_Create(100000, 0.4,
-                                         "/tmp/bf2", 10000000, O_RDWR, 0,
+                                         "/tmp/bf2", 10000000, O_RDWR|O_CREAT, 0,
                                         hash_seeds, 5);
 
     Key key;
