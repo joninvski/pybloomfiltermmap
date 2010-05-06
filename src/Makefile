@@ -1,6 +1,14 @@
+CC = gcc
+CFLAGS = -lm -g
+
+all: bloomfilter mbarray
+
 bloomfilter: mmapbitarray.* bloomfilter.*
-	gcc -lm -O3 mmapbitarray.c bloomfilter.c -o bf
+	$(CC) $(CFLAGS)  mmapbitarray.c bloomfilter.c -o bf
 
 mbarray: mmapbitarray.*
-	gcc -lm -O3 -DMBAQUERY mmapbitarray.c -o mbaquery
-	gcc -lm -O3 -DMBACREATE mmapbitarray.c -o mbacreate
+	$(CC) $(CFLAGS)	-DMBAQUERY mmapbitarray.c -o mbaquery
+	$(CC) $(CFLAGS) -DMBACREATE mmapbitarray.c -o mbacreate
+
+clean:
+	rm ./mbaquery ./mbacreate ./bf
