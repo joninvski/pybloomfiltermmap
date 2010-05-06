@@ -127,7 +127,6 @@ uint32_t _hash_long(uint32_t hash_seed, Key * key) {
 }
 
 
-#if 0
 int main(int argc, char **argv)
 {
     int hash_seeds[5] = { 4234 , 2123, 4434, 444, 12123};
@@ -148,11 +147,12 @@ int main(int argc, char **argv)
         line[strlen(line) - 1] = '\0';
         key.nhash = strlen(line);
 
-        /*if (bloomfilter_Add(bf, &key)) {
-            goto error;
-            }*/
         if (bloomfilter_Test(bf, &key)) {
             printf("Found '%s'!\n", line);
+        }
+
+        if (bloomfilter_Add(bf, &key)) {
+            //goto error;
         }
     }
     bloomfilter_Destroy(bf);
@@ -162,5 +162,4 @@ int main(int argc, char **argv)
     fprintf(stderr, "ERROR: %s [%d]\n", strerror(errno), errno);
     return 255;
 }
-#endif
 #endif
